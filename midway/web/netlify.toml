@@ -1,0 +1,12 @@
+[[plugins]]
+  package = "netlify-plugin-gatsby-cache"
+
+[build]
+  command = "gatsby build && netlify-lambda build src/lambda && yarn sentry:release && yarn sentry:commits"
+  functions = "./functions"
+
+[context.production]
+  environment = { TYPE = 'production' }
+
+[context.staging]
+  environment = { TYPE = 'staging' }
